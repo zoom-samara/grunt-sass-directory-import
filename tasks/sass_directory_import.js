@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 					}
 
 					var quotes = (options.quotes === 'single') ? '\'' : '"';
-					newFileContents.push('@import ' + quotes + includeFile + quotes + ';');
+					newFileContents.push('@import ' + quotes + includeFile + quotes);
 				});
 
 				newFileContents = newFileContents.join('\n') + '\n\n';
