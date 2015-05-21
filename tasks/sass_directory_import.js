@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 
 			// Merge task-specific and/or target-specific options with these defaults.
 			var options = this.options({
+				files: '.scss',
 				quiet: false,
 				quotes: 'double'
 			});
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
 				//
 				// Search for underscore-prefixed scss files (partials)
 				// Then remove the file we're writing the imports to from that set
-				var filesToInclude = grunt.file.expand([directory + '/_*.scss', '!' + filepath]);
+				var filesToInclude = grunt.file.expand([directory + '/_*'+options.files, '!' + filepath]);
 
 				if (!options.quiet) {
 					grunt.log.writeln('\n' + filepath.yellow + ':');
@@ -63,7 +64,7 @@ module.exports = function(grunt) {
 					var includeFile = includeFilepath.substring(includeFilepath.lastIndexOf('/') + 2);
 
 					// Remove .scss extension
-					includeFile = includeFile.replace('.scss', '');
+					includeFile = includeFile.replace(options.files, '');
 
 					if (!options.quiet) {
 						grunt.log.writeln('Importing ' + includeFile.cyan);
